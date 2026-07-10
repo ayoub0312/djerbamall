@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Djerba Mall — Site en construction</title>
+<meta name="description" content="Djerba Mall arrive enfin en ligne. Notre présence digitale est en cours de création.">
+<link rel="icon" href="assets/djerbamall-icon.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@1,500;1,600&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  html, body { margin: 0; padding: 0; background: #FFFFFF; }
+  * { box-sizing: border-box; }
+  a { color: #163A8F; text-decoration: none; }
+  a:hover { color: #A47A1E; }
+
+  @keyframes maskReveal {
+    from { transform: translateY(110%); }
+    to { transform: translateY(0); }
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(18px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes dotPulse {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(164,122,30,0.45); }
+    70% { box-shadow: 0 0 0 8px rgba(164,122,30,0); }
+  }
+  @keyframes progressSlide {
+    0% { left: -34%; }
+    100% { left: 100%; }
+  }
+  @keyframes marqueeScroll {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+
+  .lang-btn {
+    padding: 2px 0;
+    border: none;
+    border-bottom: 2px solid transparent;
+    background: transparent;
+    color: #8A93AC;
+    font-family: 'Outfit', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    cursor: pointer;
+  }
+  .lang-btn.active {
+    color: #0D1F42;
+    font-weight: 800;
+    border-bottom-color: #0D1F42;
+  }
+</style>
+</head>
+<body>
+
+<div style="position:relative; min-height:100vh; width:100%; overflow:hidden; background:#FFFFFF; font-family:'Outfit', sans-serif; display:flex; flex-direction:column;">
+
+  <!-- nav -->
+  <header style="display:flex; align-items:center; justify-content:space-between; gap:16px; padding:clamp(18px, 2.6vw, 30px) clamp(20px, 5vw, 64px); border-bottom:1px solid rgba(13,31,66,0.08); animation: fadeIn 0.9s ease both;">
+    <div style="display:flex; align-items:center; gap:12px; min-width:0;">
+      <img src="assets/djerbamall-icon.jpg" alt="Djerba Mall" style="width:40px; height:40px; border-radius:50%; object-fit:cover; flex-shrink:0;" />
+      <span style="font-size:13px; font-weight:800; letter-spacing:3px; color:#0D1F42; white-space:nowrap;">DJERBA&nbsp;MALL</span>
+    </div>
+
+    <div style="display:flex; align-items:center; gap:20px; flex-shrink:0;">
+      <button id="btn-fr" class="lang-btn active" onclick="setLang('fr')">FR</button>
+      <span style="width:1px; height:14px; background:rgba(13,31,66,0.15);"></span>
+      <button id="btn-en" class="lang-btn" onclick="setLang('en')">EN</button>
+    </div>
+  </header>
+
+  <!-- hero -->
+  <main style="flex:1; display:flex; align-items:center; padding:clamp(40px, 6vh, 80px) clamp(20px, 5vw, 64px);">
+    <div style="width:100%; display:grid; grid-template-columns:repeat(auto-fit, minmax(min(100%, 460px), 1fr)); gap:clamp(40px, 5vw, 96px); align-items:end;">
+
+      <!-- left: headline block -->
+      <div style="display:flex; flex-direction:column; gap:clamp(22px, 2.6vh, 34px); min-width:0;">
+
+        <div style="display:flex; align-items:center; gap:14px; animation: fadeInUp 0.8s ease 0.15s both;">
+          <span style="width:32px; height:1px; background:#A47A1E; flex-shrink:0;"></span>
+          <span id="copy-kicker" style="font-size:12px; font-weight:700; letter-spacing:3.5px; color:#A47A1E; text-transform:uppercase;"></span>
+        </div>
+
+        <h1 style="margin:0; font-size:clamp(42px, 6.8vw, 96px); font-weight:800; line-height:1.02; color:#0D1F42; letter-spacing:-0.02em;">
+          <span style="display:block; overflow:hidden; padding:0.06em 0;">
+            <span id="copy-titleLine1" style="display:block; animation: maskReveal 0.9s cubic-bezier(0.22,1,0.36,1) 0.3s both;"></span>
+          </span>
+          <span style="display:block; overflow:hidden; padding:0.06em 0;">
+            <span id="copy-titleLine2" style="display:block; animation: maskReveal 0.9s cubic-bezier(0.22,1,0.36,1) 0.45s both;"></span>
+          </span>
+          <span style="display:block; overflow:hidden; padding:0.16em 0.04em 0.18em;">
+            <span style="display:block; animation: maskReveal 0.9s cubic-bezier(0.22,1,0.36,1) 0.6s both;">
+              <em id="copy-titleHighlight" style="font-family:'Playfair Display', serif; font-style:italic; font-weight:500; color:#A47A1E; letter-spacing:0;"></em>
+            </span>
+          </span>
+        </h1>
+
+        <p id="copy-subtitle" style="margin:0; font-family:'Manrope', sans-serif; font-size:clamp(15px, 1.3vw, 17px); font-weight:500; color:#4C5D80; max-width:520px; line-height:1.7; animation: fadeInUp 0.9s ease 0.75s both;">
+        </p>
+
+        <!-- construction status -->
+        <div style="display:flex; flex-direction:column; gap:12px; max-width:340px; animation: fadeInUp 0.9s ease 0.9s both;">
+          <div style="display:flex; align-items:center; gap:10px;">
+            <span style="width:7px; height:7px; border-radius:50%; background:#A47A1E; flex-shrink:0; animation: dotPulse 2.2s ease-in-out infinite;"></span>
+            <span id="copy-badge" style="font-size:12.5px; font-weight:700; letter-spacing:2.5px; color:#0D1F42; text-transform:uppercase; white-space:nowrap;"></span>
+          </div>
+          <div style="position:relative; width:100%; height:2px; background:rgba(13,31,66,0.08); border-radius:99px; overflow:hidden;">
+            <span style="position:absolute; top:0; width:34%; height:100%; border-radius:99px; background:linear-gradient(90deg, transparent, #A47A1E, transparent); animation: progressSlide 2.4s cubic-bezier(0.4,0,0.2,1) infinite;"></span>
+          </div>
+        </div>
+      </div>
+
+      <!-- right: meta column -->
+      <div style="display:flex; flex-direction:column; gap:0; max-width:360px; justify-self:end; width:100%; animation: fadeInUp 1s ease 1.05s both;">
+        <div style="display:flex; align-items:baseline; justify-content:space-between; gap:16px; padding:16px 0; border-top:1px solid rgba(13,31,66,0.1);">
+          <span id="copy-metaLabel2" style="font-size:11.5px; font-weight:700; letter-spacing:2.5px; color:#8A93AC; text-transform:uppercase;"></span>
+          <span style="font-family:'Manrope', sans-serif; font-size:14.5px; font-weight:600; color:#0D1F42; text-align:right;">Djerba, Tunisie</span>
+        </div>
+        <div style="display:flex; align-items:baseline; justify-content:space-between; gap:16px; padding:16px 0; border-top:1px solid rgba(13,31,66,0.1); border-bottom:1px solid rgba(13,31,66,0.1);">
+          <span id="copy-metaLabel3" style="font-size:11.5px; font-weight:700; letter-spacing:2.5px; color:#8A93AC; text-transform:uppercase;"></span>
+          <span id="copy-metaValue3" style="font-family:'Manrope', sans-serif; font-size:14.5px; font-weight:600; color:#0D1F42; text-align:right;"></span>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- marquee -->
+  <div style="position:relative; width:100%; overflow:hidden; padding:clamp(18px, 3vh, 30px) 0; border-top:1px solid rgba(13,31,66,0.08); animation: fadeIn 1.2s ease 1.2s both;">
+    <div style="display:flex; width:max-content; animation: marqueeScroll 38s linear infinite;">
+      <div style="display:flex; align-items:baseline; gap:clamp(28px, 3.5vw, 56px); padding-right:clamp(28px, 3.5vw, 56px); white-space:nowrap;">
+        <span style="font-size:clamp(26px, 3.4vw, 46px); font-weight:700; letter-spacing:-0.01em; color:#0D1F42;">Shopping</span>
+        <span style="width:6px; height:6px; border-radius:50%; background:#A47A1E; align-self:center; flex-shrink:0;"></span>
+        <span style="font-family:'Playfair Display', serif; font-style:italic; font-weight:500; font-size:clamp(26px, 3.4vw, 46px); color:#A47A1E;">Loisirs</span>
+        <span style="width:6px; height:6px; border-radius:50%; background:#A47A1E; align-self:center; flex-shrink:0;"></span>
+        <span style="font-size:clamp(26px, 3.4vw, 46px); font-weight:700; letter-spacing:-0.01em; color:#0D1F42;">Détente</span>
+        <span style="width:6px; height:6px; border-radius:50%; background:#A47A1E; align-self:center; flex-shrink:0;"></span>
+        <span style="font-family:'Playfair Display', serif; font-style:italic; font-weight:500; font-size:clamp(26px, 3.4vw, 46px); color:#A47A1E;">Djerba Mall</span>
+        <span style="width:6px; height:6px; border-radius:50%; background:#A47A1E; align-self:center; flex-shrink:0;"></span>
+      </div>
+      <div style="display:flex; align-items:baseline; gap:clamp(28px, 3.5vw, 56px); padding-right:clamp(28px, 3.5vw, 56px); white-space:nowrap;">
+        <span style="font-size:clamp(26px, 3.4vw, 46px); font-weight:700; letter-spacing:-0.01em; color:#0D1F42;">Shopping</span>
+        <span style="width:6px; height:6px; border-radius:50%; background:#A47A1E; align-self:center; flex-shrink:0;"></span>
+        <span style="font-family:'Playfair Display', serif; font-style:italic; font-weight:500; font-size:clamp(26px, 3.4vw, 46px); color:#A47A1E;">Loisirs</span>
+        <span style="width:6px; height:6px; border-radius:50%; background:#A47A1E; align-self:center; flex-shrink:0;"></span>
+        <span style="font-size:clamp(26px, 3.4vw, 46px); font-weight:700; letter-spacing:-0.01em; color:#0D1F42;">Détente</span>
+        <span style="width:6px; height:6px; border-radius:50%; background:#A47A1E; align-self:center; flex-shrink:0;"></span>
+        <span style="font-family:'Playfair Display', serif; font-style:italic; font-weight:500; font-size:clamp(26px, 3.4vw, 46px); color:#A47A1E;">Djerba Mall</span>
+        <span style="width:6px; height:6px; border-radius:50%; background:#A47A1E; align-self:center; flex-shrink:0;"></span>
+      </div>
+    </div>
+    <!-- edge fades -->
+    <div style="position:absolute; top:0; left:0; width:clamp(60px, 10vw, 160px); height:100%; background:linear-gradient(90deg, #FFFFFF, rgba(255,255,255,0)); pointer-events:none;"></div>
+    <div style="position:absolute; top:0; right:0; width:clamp(60px, 10vw, 160px); height:100%; background:linear-gradient(270deg, #FFFFFF, rgba(255,255,255,0)); pointer-events:none;"></div>
+  </div>
+
+  <!-- footer -->
+  <footer style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:14px 28px; padding:clamp(16px, 2.4vh, 24px) clamp(20px, 5vw, 64px); border-top:1px solid rgba(13,31,66,0.08); animation: fadeIn 1.3s ease 1.35s both;">
+    <span style="font-family:'Manrope', sans-serif; font-size:12.5px; font-weight:500; color:#8A93AC; white-space:nowrap;">© 2026 Djerba Mall</span>
+
+    <div style="display:flex; align-items:center; gap:24px;">
+      <a href="https://www.instagram.com/djerba_mall2025/" target="_blank" rel="noopener" style="font-family:'Manrope', sans-serif; font-size:13px; font-weight:700; letter-spacing:1.5px; color:#0D1F42; text-transform:uppercase; transition:color 0.2s ease;">Instagram</a>
+      <span style="width:4px; height:4px; border-radius:50%; background:rgba(13,31,66,0.25);"></span>
+      <a href="https://www.facebook.com/profile.php?id=61574149778517" target="_blank" rel="noopener" style="font-family:'Manrope', sans-serif; font-size:13px; font-weight:700; letter-spacing:1.5px; color:#0D1F42; text-transform:uppercase; transition:color 0.2s ease;">Facebook</a>
+    </div>
+
+    <a href="https://www.loomens.com/" target="_blank" rel="noopener" style="display:flex; align-items:center; gap:8px; font-family:'Manrope', sans-serif; font-size:12.5px; font-weight:500; color:#8A93AC; white-space:nowrap;">
+      <span id="copy-footerCredit"></span>
+      <img src="assets/loomens-logo.jpg" alt="Loomens" style="width:15px; height:15px; border-radius:4px; object-fit:cover;" />
+      <span style="font-weight:800; color:#0D1F42; letter-spacing:1px;">LOOMENS</span>
+    </a>
+  </footer>
+
+</div>
+
+<script>
+  var copyByLang = {
+    fr: {
+      kicker: 'Depuis 2013 à Djerba',
+      titleLine1: 'Djerba Mall',
+      titleLine2: 'arrive enfin',
+      titleHighlight: 'en ligne.',
+      subtitle: 'Votre centre commercial shopping, loisirs et détente à Djerba se déploie désormais sur le web. Notre présence digitale est en cours de création.',
+      badge: 'Site en construction',
+      footerCredit: 'Développé par',
+      metaLabel2: 'Localisation', metaLabel3: 'Expérience',
+      metaValue3: 'Shopping · Loisirs · Détente'
+    },
+    en: {
+      kicker: 'In Djerba since 2013',
+      titleLine1: 'Djerba Mall',
+      titleLine2: 'is finally',
+      titleHighlight: 'going online.',
+      subtitle: 'Our shopping, dining, leisure and relaxation destination in Djerba is now taking shape on the web. Our digital presence is under construction.',
+      badge: 'Website under construction',
+      footerCredit: 'Developed by',
+      metaLabel2: 'Location', metaLabel3: 'Experience',
+      metaValue3: 'Shopping · Leisure · Relaxation'
+    }
+  };
+
+  function applyLang(lang) {
+    var c = copyByLang[lang];
+    document.getElementById('copy-kicker').textContent = c.kicker;
+    document.getElementById('copy-titleLine1').textContent = c.titleLine1;
+    document.getElementById('copy-titleLine2').textContent = c.titleLine2;
+    document.getElementById('copy-titleHighlight').textContent = c.titleHighlight;
+    document.getElementById('copy-subtitle').textContent = c.subtitle;
+    document.getElementById('copy-badge').textContent = c.badge;
+    document.getElementById('copy-footerCredit').textContent = c.footerCredit;
+    document.getElementById('copy-metaLabel2').textContent = c.metaLabel2;
+    document.getElementById('copy-metaLabel3').textContent = c.metaLabel3;
+    document.getElementById('copy-metaValue3').textContent = c.metaValue3;
+    document.documentElement.lang = lang;
+    document.getElementById('btn-fr').classList.toggle('active', lang === 'fr');
+    document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+  }
+
+  function setLang(lang) {
+    applyLang(lang);
+    try { localStorage.setItem('djerbamall-lang', lang); } catch (e) {}
+  }
+
+  (function init() {
+    var saved = 'fr';
+    try { saved = localStorage.getItem('djerbamall-lang') || 'fr'; } catch (e) {}
+    applyLang(saved);
+  })();
+</script>
+</body>
+</html>
