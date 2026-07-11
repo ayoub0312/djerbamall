@@ -157,6 +157,8 @@
   .hero-info-row:first-child { border-top: none; }
   .hero-info-label { font-size: 10.5px; font-weight: 700; letter-spacing: 2.2px; color: var(--color-grey-light); text-transform: uppercase; }
   .hero-info-value { font-family: var(--font-body); font-size: 14px; font-weight: 600; color: var(--color-midnight); text-align: right; }
+  .hero-info-link { text-decoration: none; border-bottom: 1px solid transparent; transition: color var(--dur-fast) ease, border-color var(--dur-fast) ease; }
+  .hero-info-link:hover, .hero-info-link:focus-visible { color: var(--color-blue); border-bottom-color: var(--color-blue); }
 
   /* ==================== FOOTER ==================== */
   .site-footer {
@@ -233,7 +235,7 @@
       <div class="hero-info-card" style="animation: fadeInUp 1s ease 1s both;">
         <div class="hero-info-row">
           <span class="hero-info-label" id="copy-infoLocationLabel"></span>
-          <span class="hero-info-value" id="copy-infoLocationValue"></span>
+          <a class="hero-info-value hero-info-link" id="copy-infoLocationValue" href="https://www.google.com/maps/place/Djerba+Mall/@33.805707,10.9891651,17z/data=!3m1!4b1!4m6!3m5!1s0x13aa97c4315577a9:0x968c138cccb474d4!8m2!3d33.805707!4d10.99174!16s%2Fg%2F11h4089s5s?entry=ttu&amp;g_ep=EgoyMDI2MDcwOC4wIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noopener"></a>
         </div>
         <div class="hero-info-row">
           <span class="hero-info-label" id="copy-infoStatusLabel"></span>
