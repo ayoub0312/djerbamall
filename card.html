@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title id="docTitle">Djerba Mall — Carte de visite</title>
+<meta name="description" content="Retrouvez Djerba Mall sur les réseaux sociaux.">
+<meta name="theme-color" content="#0339A6">
+<link rel="icon" href="assets/djerbamall-icon.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@1,500;1,600&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --color-blue: #0339A6;
+    --color-midnight: #071A3D;
+    --color-ivory: #FBF7EF;
+    --color-white: #FFFFFF;
+    --color-gold: #A47A1E;
+    --color-gold-deep: #7A5A16;
+    --color-grey: #5C6478;
+    --color-grey-light: #67708D;
+    --color-border: rgba(7,26,61,0.10);
+
+    --font-display: 'Outfit', sans-serif;
+    --font-editorial: 'Playfair Display', serif;
+    --font-body: 'Manrope', sans-serif;
+
+    --dur-fast: 0.2s;
+    --dur-base: 0.4s;
+    --ease-standard: cubic-bezier(0.22,1,0.36,1);
+  }
+
+  html, body { margin: 0; padding: 0; }
+  * { box-sizing: border-box; }
+  body {
+    font-family: var(--font-display);
+    color: var(--color-white);
+    min-height: 100svh;
+    overflow-x: hidden;
+    background: var(--color-midnight);
+    background-image:
+      radial-gradient(ellipse 80% 60% at 20% 10%, rgba(3,57,166,0.35), transparent),
+      radial-gradient(ellipse 60% 50% at 80% 90%, rgba(164,122,30,0.18), transparent),
+      radial-gradient(ellipse 50% 50% at 50% 50%, rgba(3,57,166,0.08), transparent),
+      linear-gradient(to bottom, transparent 70%, rgba(255,255,255,0.06) 88%, rgba(255,255,255,0.12) 100%);
+  }
+  h1, h2, h3, p { margin: 0; }
+  a { text-decoration: none; color: inherit; }
+  img { max-width: 100%; }
+  :focus-visible { outline: 2px solid var(--color-gold); outline-offset: 3px; border-radius: 4px; }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation: none !important; transition: none !important; }
+  }
+
+  /* ====== PARTICLES ====== */
+  .bg-particles {
+    position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden;
+  }
+  .bg-particles span {
+    position: absolute; border-radius: 50%; opacity: 0;
+    background: radial-gradient(circle, rgba(164,122,30,0.3), transparent 70%);
+    animation: particleFloat linear infinite;
+  }
+  .bg-particles span:nth-child(1) { width: 6px; height: 6px; left: 12%; animation-duration: 18s; animation-delay: 0s; }
+  .bg-particles span:nth-child(2) { width: 4px; height: 4px; left: 28%; animation-duration: 22s; animation-delay: 3s; }
+  .bg-particles span:nth-child(3) { width: 8px; height: 8px; left: 45%; animation-duration: 16s; animation-delay: 1s; }
+  .bg-particles span:nth-child(4) { width: 5px; height: 5px; left: 62%; animation-duration: 20s; animation-delay: 5s; }
+  .bg-particles span:nth-child(5) { width: 3px; height: 3px; left: 78%; animation-duration: 24s; animation-delay: 2s; }
+  .bg-particles span:nth-child(6) { width: 7px; height: 7px; left: 90%; animation-duration: 19s; animation-delay: 4s; }
+
+  @keyframes particleFloat {
+    0%   { transform: translateY(100vh) scale(0); opacity: 0; }
+    10%  { opacity: 0.6; }
+    90%  { opacity: 0.6; }
+    100% { transform: translateY(-10vh) scale(1); opacity: 0; }
+  }
+
+  /* ====== ANIMATIONS ====== */
+  @keyframes fadeInUp { from { opacity: 0; transform: translateY(28px); } to { opacity: 1; transform: translateY(0); } }
+  @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+  @keyframes scaleIn { from { opacity: 0; transform: scale(0.85); } to { opacity: 1; transform: scale(1); } }
+  @keyframes shimmer { 0% { background-position: -200% 0; } 100% { background-position: 200% 0; } }
+  @keyframes ringPulse { 0% { transform: scale(0.8); opacity: 0.6; } 100% { transform: scale(2.4); opacity: 0; } }
+  @keyframes iconBounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-6px); }
+  }
+  @keyframes cardGlow {
+    0%, 100% { opacity: 0.4; }
+    50% { opacity: 0.8; }
+  }
+  @keyframes sweepLine {
+    0%   { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+  }
+  @keyframes breathe {
+    0%, 100% { opacity: 0.35; transform: scale(1); }
+    50%      { opacity: 0.8; transform: scale(1.15); }
+  }
+  @keyframes orbitDot {
+    0%   { transform: rotate(0deg) translateX(18px) rotate(0deg); }
+    100% { transform: rotate(360deg) translateX(18px) rotate(-360deg); }
+  }
+  @keyframes gradientText {
+    0%   { background-position: 0% 50%; }
+    50%  { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+  @keyframes spinRing {
+    from { transform: rotate(0deg); }
+    to   { transform: rotate(360deg); }
+  }
+  @keyframes livePulse {
+    0%, 100% { opacity: 1; }
+    50%      { opacity: 0.4; }
+  }
+
+  /* ====== CURSOR GLOW ====== */
+  .cursor-glow {
+    position: fixed; width: 280px; height: 280px; border-radius: 50%; pointer-events: none; z-index: 0;
+    background: radial-gradient(circle, rgba(3,57,166,0.12), rgba(164,122,30,0.06), transparent 70%);
+    transform: translate(-50%, -50%); opacity: 0;
+    transition: opacity 0.4s ease;
+    mix-blend-mode: screen;
+  }
+  .cursor-glow.is-visible { opacity: 1; }
+
+  /* ====== GRID PATTERN ====== */
+  .bg-grid {
+    position: fixed; inset: 0; z-index: 0; pointer-events: none;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+    background-size: 60px 60px;
+    mask-image: radial-gradient(ellipse 70% 60% at 50% 50%, black, transparent);
+    -webkit-mask-image: radial-gradient(ellipse 70% 60% at 50% 50%, black, transparent);
+  }
+
+  /* ====== LAYOUT ====== */
+  .page-wrapper {
+    position: relative; z-index: 1;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    min-height: 100svh; padding: 36px clamp(16px, 5vw, 48px);
+    gap: clamp(28px, 4vh, 44px);
+  }
+
+  /* ====== HEADER ====== */
+  .card-header {
+    display: flex; flex-direction: column; align-items: center; gap: 16px;
+    text-align: center; animation: fadeInUp 0.9s var(--ease-standard) both;
+  }
+  .card-logo-wrap {
+    position: relative; display: flex; align-items: center; justify-content: center;
+    width: 100px; height: 100px;
+  }
+  .card-logo-glow {
+    position: absolute; width: 120px; height: 120px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(3,57,166,0.3), rgba(164,122,30,0.15), transparent 70%);
+    animation: breathe 4s ease-in-out infinite;
+    pointer-events: none;
+  }
+  .card-logo-ring {
+    position: absolute; inset: -2px; border-radius: 50%; pointer-events: none;
+    border: 1.5px dashed transparent;
+    border-image: conic-gradient(from 0deg, var(--color-gold), var(--color-blue), var(--color-gold), var(--color-blue), var(--color-gold)) 1;
+    animation: spinRing 12s linear infinite;
+    opacity: 0.5;
+  }
+  .card-logo-ring-inner {
+    position: absolute; inset: 4px; border-radius: 50%; pointer-events: none;
+    border: 1px solid rgba(255,255,255,0.08);
+  }
+  .card-logo {
+    position: relative; width: 80px; height: 80px; border-radius: 50%; object-fit: cover;
+    border: 2px solid rgba(164,122,30,0.5);
+    box-shadow: 0 0 0 6px rgba(3,57,166,0.15), 0 0 40px rgba(3,57,166,0.2), 0 8px 32px rgba(0,0,0,0.3);
+    animation: scaleIn 0.7s var(--ease-standard) 0.1s both;
+  }
+  .card-brand {
+    font-size: 16px; font-weight: 800; letter-spacing: 5px;
+    text-transform: uppercase;
+    background: linear-gradient(90deg, var(--color-white), var(--color-gold), var(--color-white), rgba(3,57,166,0.9), var(--color-white));
+    background-size: 300% 100%;
+    -webkit-background-clip: text; background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: gradientText 6s ease infinite;
+  }
+  .card-tagline {
+    font-family: var(--font-editorial); font-style: italic;
+    font-size: clamp(14px, 1.6vw, 17px); font-weight: 500; color: rgba(255,255,255,0.55);
+  }
+
+  .lang-switch {
+    display: flex; align-items: center; gap: 10px;
+    animation: fadeIn 0.8s ease 0.4s both;
+  }
+  .lang-divider { width: 1px; height: 13px; background: rgba(255,255,255,0.2); }
+  .lang-btn {
+    padding: 2px 0; border: none; border-bottom: 2px solid transparent; background: transparent;
+    color: rgba(255,255,255,0.45); font-family: var(--font-display); font-size: 12px; font-weight: 700;
+    letter-spacing: 1.5px; cursor: pointer; transition: color var(--dur-fast) ease, border-color var(--dur-fast) ease;
+  }
+  .lang-btn.active { color: var(--color-white); border-bottom-color: var(--color-gold); }
+  .lang-btn:hover { color: rgba(255,255,255,0.8); }
+
+  /* ====== CARDS GRID ====== */
+  .cards-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: clamp(16px, 2.5vw, 28px);
+    width: 100%;
+    max-width: 820px;
+    perspective: 800px;
+  }
+
+  /* ====== CARD ====== */
+  .social-card {
+    position: relative; display: flex; flex-direction: column; align-items: center;
+    gap: 18px; padding: clamp(28px, 4vw, 40px) clamp(16px, 2.5vw, 28px);
+    border-radius: 20px; cursor: pointer; text-align: center;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.08);
+    backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+    transition: transform 0.5s var(--ease-standard), border-color 0.4s ease, box-shadow 0.4s ease;
+    overflow: hidden;
+  }
+  .social-card::before {
+    content: ""; position: absolute; inset: 0; border-radius: 20px; opacity: 0;
+    transition: opacity 0.5s ease; z-index: 0;
+  }
+  .social-card::after {
+    content: ""; position: absolute; inset: -1px; border-radius: 20px; z-index: 0;
+    background: linear-gradient(135deg, rgba(255,255,255,0.12), transparent 40%, transparent 60%, rgba(255,255,255,0.06));
+    opacity: 0; transition: opacity 0.4s ease;
+  }
+
+  .social-card:nth-child(1) { animation: fadeInUp 0.8s var(--ease-standard) 0.3s both; }
+  .social-card:nth-child(2) { animation: fadeInUp 0.8s var(--ease-standard) 0.5s both; }
+  .social-card:nth-child(3) { animation: fadeInUp 0.8s var(--ease-standard) 0.7s both; }
+
+  .social-card:hover {
+    transform: translateY(-8px) scale(1.02);
+    border-color: rgba(255,255,255,0.18);
+    box-shadow: 0 20px 60px rgba(0,0,0,0.3), 0 0 80px var(--card-glow, rgba(3,57,166,0.15));
+  }
+  .social-card:hover::before { opacity: 1; }
+  .social-card:hover::after { opacity: 1; }
+  .social-card:hover .card-icon { animation: iconBounce 0.6s var(--ease-standard); }
+  .social-card:hover .card-icon-ring { opacity: 1; animation: ringPulse 1.5s ease-out infinite; }
+  .social-card:hover .card-arrow { opacity: 1; transform: translateX(0); }
+
+  /* Card variants */
+  .social-card--instagram { --card-glow: rgba(225,48,108,0.2); }
+  .social-card--instagram::before {
+    background: linear-gradient(145deg, rgba(131,58,180,0.15), rgba(225,48,108,0.1), rgba(253,29,29,0.08), rgba(252,176,69,0.06));
+  }
+  .social-card--facebook { --card-glow: rgba(24,119,242,0.2); }
+  .social-card--facebook::before {
+    background: linear-gradient(145deg, rgba(24,119,242,0.15), rgba(66,103,178,0.08));
+  }
+  .social-card--website { --card-glow: rgba(164,122,30,0.2); }
+  .social-card--website::before {
+    background: linear-gradient(145deg, rgba(3,57,166,0.12), rgba(164,122,30,0.1));
+  }
+
+  /* Icon */
+  .card-icon-wrap {
+    position: relative; z-index: 1; display: flex; align-items: center; justify-content: center;
+  }
+  .card-icon {
+    display: flex; align-items: center; justify-content: center;
+    width: clamp(56px, 7vw, 68px); height: clamp(56px, 7vw, 68px);
+    border-radius: 18px; color: var(--color-white);
+    transition: transform 0.3s var(--ease-standard), box-shadow 0.4s ease;
+  }
+  .card-icon svg { width: clamp(28px, 3.5vw, 34px); height: clamp(28px, 3.5vw, 34px); }
+  .card-icon-ring {
+    position: absolute; inset: -8px; border-radius: 22px;
+    border: 1px solid currentColor; opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .social-card--instagram .card-icon {
+    background: linear-gradient(135deg, #833AB4, #E1306C, #FD1D1D, #FCB045);
+    box-shadow: 0 6px 20px rgba(225,48,108,0.3);
+  }
+  .social-card--instagram .card-icon-ring { color: rgba(225,48,108,0.3); }
+
+  .social-card--facebook .card-icon {
+    background: linear-gradient(135deg, #1877F2, #42a5f5);
+    box-shadow: 0 6px 20px rgba(24,119,242,0.3);
+  }
+  .social-card--facebook .card-icon-ring { color: rgba(24,119,242,0.3); }
+
+  .social-card--website .card-icon {
+    background: linear-gradient(135deg, var(--color-blue), #0b5ed7);
+    box-shadow: 0 6px 20px rgba(3,57,166,0.3);
+  }
+  .social-card--website .card-icon-ring { color: rgba(3,57,166,0.3); }
+
+  /* Badge */
+  .card-badge {
+    position: absolute; top: 12px; right: 12px; z-index: 2;
+    display: flex; align-items: center; gap: 5px;
+    padding: 4px 10px; border-radius: 20px;
+    font-family: var(--font-body); font-size: 10px; font-weight: 700;
+    letter-spacing: 0.8px; text-transform: uppercase;
+    background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.1);
+    backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+    color: rgba(255,255,255,0.7);
+  }
+  .card-badge-dot {
+    width: 5px; height: 5px; border-radius: 50%;
+    animation: livePulse 2s ease-in-out infinite;
+  }
+  .social-card--instagram .card-badge-dot { background: #E1306C; }
+  .social-card--facebook .card-badge-dot { background: #1877F2; }
+  .social-card--website .card-badge-dot { background: var(--color-gold); }
+
+  /* Spotlight (mouse glow on card) */
+  .card-spotlight {
+    position: absolute; inset: 0; z-index: 0; border-radius: 20px; opacity: 0;
+    transition: opacity 0.4s ease; pointer-events: none;
+    background: radial-gradient(circle 120px at var(--mx, 50%) var(--my, 50%), rgba(255,255,255,0.06), transparent);
+  }
+  .social-card:hover .card-spotlight { opacity: 1; }
+
+  /* Text */
+  .card-content { position: relative; z-index: 1; display: flex; flex-direction: column; gap: 6px; }
+  .card-name {
+    font-size: clamp(15px, 1.6vw, 18px); font-weight: 700; letter-spacing: 0.02em;
+    color: var(--color-white);
+  }
+  .card-handle {
+    font-family: var(--font-body); font-size: clamp(12px, 1.1vw, 13px); font-weight: 500;
+    color: rgba(255,255,255,0.45); letter-spacing: 0.01em;
+  }
+
+  /* Arrow */
+  .card-arrow {
+    position: relative; z-index: 1; display: flex; align-items: center; gap: 6px;
+    margin-top: 6px; font-family: var(--font-body); font-size: 12px; font-weight: 600;
+    letter-spacing: 1px; text-transform: uppercase; color: rgba(255,255,255,0.6);
+    opacity: 0; transform: translateX(-8px);
+    transition: opacity 0.4s ease, transform 0.4s var(--ease-standard), color 0.3s ease;
+  }
+  .card-arrow svg { width: 14px; height: 14px; transition: transform 0.3s ease; }
+  .social-card:hover .card-arrow svg { transform: translateX(3px); }
+
+  /* Shimmer line */
+  .card-shimmer {
+    position: absolute; bottom: 0; left: 0; right: 0; height: 2px; z-index: 1;
+    border-radius: 0 0 20px 20px; opacity: 0;
+    transition: opacity 0.4s ease;
+  }
+  .social-card:hover .card-shimmer { opacity: 1; }
+  .social-card--instagram .card-shimmer {
+    background: linear-gradient(90deg, transparent, #833AB4, #E1306C, #FCB045, transparent);
+    background-size: 200% 100%; animation: shimmer 2s linear infinite;
+  }
+  .social-card--facebook .card-shimmer {
+    background: linear-gradient(90deg, transparent, #1877F2, #42a5f5, #1877F2, transparent);
+    background-size: 200% 100%; animation: shimmer 2s linear infinite;
+  }
+  .social-card--website .card-shimmer {
+    background: linear-gradient(90deg, transparent, var(--color-blue), var(--color-gold), var(--color-blue), transparent);
+    background-size: 200% 100%; animation: shimmer 2s linear infinite;
+  }
+
+  /* ====== BACK LINK ====== */
+  .back-link {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-family: var(--font-body); font-size: 13px; font-weight: 600; color: rgba(255,255,255,0.4);
+    letter-spacing: 0.5px; transition: color 0.3s ease;
+    animation: fadeIn 0.8s ease 1s both;
+  }
+  .back-link svg { width: 14px; height: 14px; transition: transform 0.3s ease; }
+  .back-link:hover { color: rgba(255,255,255,0.7); }
+  .back-link:hover svg { transform: translateX(-3px); }
+
+  /* ====== BOTTOM ORNAMENT ====== */
+  .bottom-ornament {
+    display: flex; flex-direction: column; align-items: center; gap: 18px;
+    width: 100%; max-width: 500px;
+    animation: fadeIn 1s ease 1.2s both;
+  }
+  .ornament-line-wrap {
+    position: relative; width: 100%; height: 1px; overflow: hidden;
+  }
+  .ornament-line {
+    position: absolute; inset: 0;
+    background: linear-gradient(90deg, transparent, rgba(164,122,30,0.08) 20%, rgba(164,122,30,0.25) 50%, rgba(164,122,30,0.08) 80%, transparent);
+  }
+  .ornament-sweep {
+    position: absolute; top: -1px; width: 80px; height: 3px;
+    background: linear-gradient(90deg, transparent, var(--color-gold), rgba(3,57,166,0.8), transparent);
+    border-radius: 2px;
+    animation: sweepLine 4s ease-in-out infinite;
+    box-shadow: 0 0 12px rgba(164,122,30,0.5), 0 0 24px rgba(3,57,166,0.3);
+  }
+  .ornament-center {
+    position: relative; display: flex; align-items: center; justify-content: center;
+    width: 40px; height: 40px;
+  }
+  .ornament-diamond {
+    width: 8px; height: 8px; border-radius: 2px;
+    background: linear-gradient(135deg, var(--color-gold), var(--color-blue));
+    transform: rotate(45deg);
+    box-shadow: 0 0 10px rgba(164,122,30,0.4);
+    animation: breathe 3s ease-in-out infinite;
+  }
+  .ornament-orbit {
+    position: absolute; width: 3px; height: 3px; border-radius: 50%;
+    background: var(--color-gold); opacity: 0.6;
+  }
+  .ornament-orbit:nth-child(2) { animation: orbitDot 6s linear infinite; }
+  .ornament-orbit:nth-child(3) { animation: orbitDot 6s linear infinite reverse; }
+  .ornament-line-wrap:last-child .ornament-sweep {
+    animation-delay: -2s;
+  }
+
+  /* ====== FOOTER ====== */
+  .card-footer {
+    display: flex; align-items: center; gap: 7px;
+    font-family: var(--font-body); font-size: 12px; color: rgba(255,255,255,0.3);
+    animation: fadeIn 0.8s ease 1.4s both;
+  }
+  .card-footer img { width: 13px; height: 13px; border-radius: 3px; object-fit: cover; }
+  .card-footer strong { font-weight: 800; color: rgba(255,255,255,0.55); letter-spacing: 0.6px; }
+  .card-footer a { color: inherit; text-decoration: none; display: flex; align-items: center; gap: 7px; transition: color 0.3s ease; }
+  .card-footer a:hover { color: rgba(255,255,255,0.5); }
+
+  /* ====== RESPONSIVE ====== */
+  @media (max-width: 700px) {
+    .cards-grid {
+      grid-template-columns: 1fr;
+      max-width: 380px;
+    }
+    .social-card {
+      flex-direction: row; gap: clamp(14px, 4vw, 20px);
+      padding: clamp(20px, 4vw, 28px); text-align: left;
+    }
+    .card-content { align-items: flex-start; }
+    .card-arrow { margin-top: 2px; }
+    .card-shimmer { height: 2px; bottom: 0; left: 0; right: 0; border-radius: 0 0 20px 20px; }
+    .social-card:hover { transform: translateX(6px) scale(1.01); }
+    .card-icon { width: 52px; height: 52px; border-radius: 14px; }
+    .card-icon svg { width: 26px; height: 26px; }
+    .card-badge { top: 8px; right: 8px; padding: 3px 8px; font-size: 9px; }
+  }
+
+  @media (max-width: 380px) {
+    .page-wrapper { padding: 32px 14px; }
+    .card-logo { width: 60px; height: 60px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="bg-grid" aria-hidden="true"></div>
+<div class="bg-particles" aria-hidden="true">
+  <span></span><span></span><span></span><span></span><span></span><span></span>
+</div>
+<div class="cursor-glow" id="cursorGlow" aria-hidden="true"></div>
+
+<div class="page-wrapper">
+
+  <header class="card-header">
+    <div class="card-logo-wrap">
+      <div class="card-logo-glow" aria-hidden="true"></div>
+      <div class="card-logo-ring" aria-hidden="true"></div>
+      <div class="card-logo-ring-inner" aria-hidden="true"></div>
+      <img class="card-logo" src="assets/djerbamall-logo.jpg" alt="Djerba Mall" decoding="async" />
+    </div>
+    <span class="card-brand">DJERBA MALL</span>
+    <span class="card-tagline" id="copy-tagline"></span>
+    <div class="lang-switch">
+      <button id="btn-fr" class="lang-btn active" onclick="setLang('fr')" aria-pressed="true">FR</button>
+      <span class="lang-divider"></span>
+      <button id="btn-en" class="lang-btn" onclick="setLang('en')" aria-pressed="false">EN</button>
+    </div>
+  </header>
+
+  <div class="cards-grid">
+
+    <a href="https://www.instagram.com/djerba_mall2025/" target="_blank" rel="noopener" class="social-card social-card--instagram" aria-label="Instagram">
+      <div class="card-spotlight"></div>
+      <div class="card-badge"><span class="card-badge-dot"></span> <span id="copy-badgeInsta"></span></div>
+      <div class="card-icon-wrap">
+        <div class="card-icon">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+        </div>
+        <div class="card-icon-ring"></div>
+      </div>
+      <div class="card-content">
+        <span class="card-name">Instagram</span>
+        <span class="card-handle">@djerba_mall2025</span>
+      </div>
+      <div class="card-arrow" id="copy-arrowInsta">
+        <span></span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+      </div>
+      <div class="card-shimmer"></div>
+    </a>
+
+    <a href="https://www.facebook.com/profile.php?id=61574149778517" target="_blank" rel="noopener" class="social-card social-card--facebook" aria-label="Facebook">
+      <div class="card-spotlight"></div>
+      <div class="card-badge"><span class="card-badge-dot"></span> <span id="copy-badgeFb"></span></div>
+      <div class="card-icon-wrap">
+        <div class="card-icon">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M9.101 23.691v-7.98H6.627v-3.667h2.474v-1.58c0-4.085 1.848-5.978 5.858-5.978.401 0 .955.042 1.468.103a8.68 8.68 0 0 1 1.141.195v3.325a8.623 8.623 0 0 0-.653-.036 26.805 26.805 0 0 0-.733-.009c-.707 0-1.259.096-1.675.309a1.686 1.686 0 0 0-.679.622c-.258.42-.374.995-.374 1.752v1.297h3.919l-.386 1.988-.287 1.679h-3.246v8.245C19.396 23.238 24 18.179 24 12.044c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 6.135 4.604 11.194 10.101 11.647z"/></svg>
+        </div>
+        <div class="card-icon-ring"></div>
+      </div>
+      <div class="card-content">
+        <span class="card-name">Facebook</span>
+        <span class="card-handle" id="copy-fbHandle"></span>
+      </div>
+      <div class="card-arrow" id="copy-arrowFb">
+        <span></span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+      </div>
+      <div class="card-shimmer"></div>
+    </a>
+
+    <a href="index.html" class="social-card social-card--website" aria-label="Site Web">
+      <div class="card-spotlight"></div>
+      <div class="card-badge"><span class="card-badge-dot"></span> <span id="copy-badgeWeb"></span></div>
+      <div class="card-icon-wrap">
+        <div class="card-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10A15.3 15.3 0 0 1 12 2z"/></svg>
+        </div>
+        <div class="card-icon-ring"></div>
+      </div>
+      <div class="card-content">
+        <span class="card-name" id="copy-webName"></span>
+        <span class="card-handle">djerbamall.com</span>
+      </div>
+      <div class="card-arrow" id="copy-arrowWeb">
+        <span></span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+      </div>
+      <div class="card-shimmer"></div>
+    </a>
+
+  </div>
+
+  <div class="bottom-ornament" aria-hidden="true">
+    <div class="ornament-line-wrap">
+      <div class="ornament-line"></div>
+      <div class="ornament-sweep"></div>
+    </div>
+    <div class="ornament-center">
+      <div class="ornament-diamond"></div>
+      <div class="ornament-orbit"></div>
+      <div class="ornament-orbit"></div>
+    </div>
+    <div class="ornament-line-wrap">
+      <div class="ornament-line"></div>
+      <div class="ornament-sweep"></div>
+    </div>
+  </div>
+
+  <div class="card-footer">
+    <a href="https://www.loomens.com/" target="_blank" rel="noopener">
+      <span id="copy-credit"></span>
+      <img src="assets/loomens-logo.jpg" alt="Loomens" loading="lazy" decoding="async" />
+      <strong>LOOMENS</strong>
+    </a>
+  </div>
+
+</div>
+
+<script>
+  var copyByLang = {
+    fr: {
+      tagline: 'Retrouvez-nous sur les réseaux',
+      fbHandle: 'Djerba Mall',
+      webName: 'Site Officiel',
+      arrowInsta: 'Suivre',
+      arrowFb: 'Suivre',
+      arrowWeb: 'Visiter',
+      back: 'Retour au site',
+      credit: 'Développé par',
+      badgeInsta: 'Actif',
+      badgeFb: 'Actif',
+      badgeWeb: 'Bientôt'
+    },
+    en: {
+      tagline: 'Find us on social media',
+      fbHandle: 'Djerba Mall',
+      webName: 'Official Website',
+      arrowInsta: 'Follow',
+      arrowFb: 'Follow',
+      arrowWeb: 'Visit',
+      back: 'Back to site',
+      credit: 'Developed by',
+      badgeInsta: 'Active',
+      badgeFb: 'Active',
+      badgeWeb: 'Soon'
+    }
+  };
+
+  function setText(id, val) { var el = document.getElementById(id); if (el) el.textContent = val; }
+
+  function applyLang(lang) {
+    var c = copyByLang[lang];
+    setText('copy-tagline', c.tagline);
+    setText('copy-fbHandle', c.fbHandle);
+    setText('copy-webName', c.webName);
+    setText('copy-back', c.back);
+    setText('copy-credit', c.credit);
+    setText('copy-badgeInsta', c.badgeInsta);
+    setText('copy-badgeFb', c.badgeFb);
+    setText('copy-badgeWeb', c.badgeWeb);
+
+    var arrowInsta = document.querySelector('#copy-arrowInsta span');
+    var arrowFb = document.querySelector('#copy-arrowFb span');
+    var arrowWeb = document.querySelector('#copy-arrowWeb span');
+    if (arrowInsta) arrowInsta.textContent = c.arrowInsta;
+    if (arrowFb) arrowFb.textContent = c.arrowFb;
+    if (arrowWeb) arrowWeb.textContent = c.arrowWeb;
+
+    document.documentElement.lang = lang;
+    var fr = document.getElementById('btn-fr'), en = document.getElementById('btn-en');
+    fr.classList.toggle('active', lang === 'fr'); fr.setAttribute('aria-pressed', lang === 'fr');
+    en.classList.toggle('active', lang === 'en'); en.setAttribute('aria-pressed', lang === 'en');
+  }
+
+  function setLang(lang) {
+    applyLang(lang);
+    try { localStorage.setItem('djerbamall-lang', lang); } catch (e) {}
+  }
+
+  (function initLang() {
+    var saved = 'fr';
+    try { saved = localStorage.getItem('djerbamall-lang') || 'fr'; } catch (e) {}
+    applyLang(saved);
+  })();
+
+  (function cursorGlow() {
+    var glow = document.getElementById('cursorGlow');
+    if (!glow || window.matchMedia('(pointer: coarse)').matches) return;
+    document.addEventListener('mousemove', function(e) {
+      glow.style.left = e.clientX + 'px';
+      glow.style.top = e.clientY + 'px';
+      glow.classList.add('is-visible');
+    });
+    document.addEventListener('mouseleave', function() {
+      glow.classList.remove('is-visible');
+    });
+  })();
+
+  (function cardTilt() {
+    var cards = document.querySelectorAll('.social-card');
+    if (window.matchMedia('(pointer: coarse)').matches) return;
+    cards.forEach(function(card) {
+      card.addEventListener('mousemove', function(e) {
+        var rect = card.getBoundingClientRect();
+        var x = e.clientX - rect.left;
+        var y = e.clientY - rect.top;
+        var cx = rect.width / 2;
+        var cy = rect.height / 2;
+        var rotateY = ((x - cx) / cx) * 8;
+        var rotateX = ((cy - y) / cy) * 6;
+        card.style.transform = 'perspective(600px) rotateX(' + rotateX + 'deg) rotateY(' + rotateY + 'deg) translateY(-8px) scale(1.02)';
+        var spot = card.querySelector('.card-spotlight');
+        if (spot) {
+          spot.style.setProperty('--mx', x + 'px');
+          spot.style.setProperty('--my', y + 'px');
+        }
+      });
+      card.addEventListener('mouseleave', function() {
+        card.style.transform = '';
+      });
+    });
+  })();
+</script>
+</body>
+</html>
